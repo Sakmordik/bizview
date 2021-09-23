@@ -12,7 +12,6 @@ ReactDOM.render(
     <Input />
     <Qualifications/>
     <Qualifications/>
-    <Qualifications/>
   </React.StrictMode>,
   document.getElementById('root')
 );
