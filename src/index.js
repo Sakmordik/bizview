@@ -11,6 +11,8 @@ ReactDOM.render(
     <Header />
     <Input />
     <Qualifications/>
+    <Qualifications/>
+    <Qualifications/>
   </React.StrictMode>,
   document.getElementById('root')
 );
