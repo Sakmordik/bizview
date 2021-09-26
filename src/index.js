@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './components/header';
-import Input from './components/input';
 import reportWebVitals from './reportWebVitals';
-import Qualifications from './components/qualifications';
+import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Header />
-    <Input />
-    <Qualifications/>
-    <Qualifications/>
-  </React.StrictMode>,
+<App/>
+  ,
   document.getElementById('root')
 );
 
