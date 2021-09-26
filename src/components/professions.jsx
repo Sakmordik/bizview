@@ -5,8 +5,10 @@ class Professions extends Component {
   render() {
     const { Professions, addComponent, deleteComponent } = this.props;
     return (
-      <div className="container m-4 border rounded d-grid ">
-        <h2 className="title text-center my-2">Profession</h2>
+      <div className="container m-4 border rounded col">
+        <h2 className="title text-center my-3">
+          Prior Professional Experience
+        </h2>
         {Professions.map((profession) => (
           <Profession
             key={profession.id}
@@ -15,7 +17,7 @@ class Professions extends Component {
           />
         ))}
         <button
-          className="btn btn-outline-secondary mb-2 btn-block"
+          className="btn btn-outline-secondary mb-2 btn-block form-control"
           onClick={() => addComponent("Professions")}>
           +
         </button>

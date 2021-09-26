@@ -5,7 +5,8 @@ class Education extends React.Component {
   render() {
     const { deleteComponent, id } = this.props;
     return (
-      <div className="input-group mt-2 mb-2">
+      <React.Fragment>
+      <div className="input-group my-2">
         <select
           className="border"
           id="inputGroupSelect01"
@@ -28,12 +29,9 @@ class Education extends React.Component {
           className="form-control"
           placeholder="University/Institute"
         />
-        <input
-          type="file"
-          className="form-control"
-          id="inputGroupFile01"
-          style={{ width: "10px" }}
-        />
+        <div className="input-group-append">
+          <input type="file" className="form-control" />
+        </div>
         {/* <input id="file-upload" type="file" style={{display:"none"}}/>
                     <label htmlFor="file-upload" className="custom-file-upload">
                         File
@@ -53,6 +51,7 @@ class Education extends React.Component {
           />
         </button>
       </div>
+      </React.Fragment>
     );
   }
 }

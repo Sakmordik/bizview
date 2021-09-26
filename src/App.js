@@ -3,7 +3,9 @@ import Header from "./components/header";
 import Profile from "./components/profile";
 import Educations from "./components/educations";
 import Professions from "./components/professions";
+import ContactInfo from "./components/contactinfo";
 import "./App.css";
+import Languages from "./components/languages";
 
 class App extends React.Component {
   state = {
@@ -17,6 +19,7 @@ class App extends React.Component {
       // {id:6}
     ],
     Professions: [{ id: 0 }],
+    Languages: [{ id: 0 }],
   };
 
   render() {
@@ -35,6 +38,12 @@ class App extends React.Component {
             addComponent={this.addComponent}
             deleteComponent={this.deleteComponent}
           />
+          <Languages
+            Languages={this.state.Languages}
+            addComponent={this.addComponent}
+            deleteComponent={this.deleteComponent}
+          />
+          <ContactInfo />
         </div>
       </React.Fragment>
     );
