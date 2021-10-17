@@ -5,7 +5,7 @@ class Profession extends React.Component {
   render() {
     const { deleteComponent, id } = this.props;
     return (
-      <React.Fragment className="">
+      <React.Fragment>
         <div className="my-2 mt-4 row">
           <div className="input-group col-md my-1">
             <input
@@ -59,7 +59,6 @@ class Profession extends React.Component {
             rows="5"
             className="form-control"></textarea>
         </div>
-        
       </React.Fragment>
     );
   }

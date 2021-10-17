@@ -6,11 +6,31 @@ class Language extends React.Component {
     const { deleteComponent, id } = this.props;
     return (
       <div className="input-group my-2">
-        <input type="text" className="form-control w-25" placeholder="Language" />
+        <input
+          type="text"
+          className="form-control w-25"
+          placeholder="Language"
+        />
 
         <div className="input-group-append">
-          <input type="file" className="form-control" />
+          <label
+            // style={{maxWidth:"300px"}}
+            id={"languageFileLabel" + id}
+            className="input-group-text"
+            htmlFor={"languageFileInput" + id}>
+            Choose Scanned Document
+          </label>
         </div>
+        <input
+          type="file"
+          className=""
+          id={"languageFileInput" + id}
+          style={{ width: "0px", height: "0px" }}
+          onChange={(event) =>
+            (document.getElementById("languageFileLabel" + id).innerHTML =
+              event.target.files[0].name)
+          }
+        />
         {/* <input id="file-upload" type="file" style={{display:"none"}}/>
                     <label htmlFor="file-upload" className="custom-file-upload">
                         File

@@ -9,8 +9,14 @@ import Languages from "./components/languages";
 
 class App extends React.Component {
   state = {
+    Profile: {
+      firstName: "",
+      lastName: "",
+      description: "",
+      gender: "",
+    },
     Educations: [
-      { id: 0 },
+      { id: 0, value: null },
       // {id:1},
       // {id:2},
       // {id:3},
@@ -18,8 +24,8 @@ class App extends React.Component {
       // {id:5},
       // {id:6}
     ],
-    Professions: [{ id: 0 }],
-    Languages: [{ id: 0 }],
+    Professions: [{ id: 0, value: null }],
+    Languages: [{ id: 0, value: null }],
   };
 
   render() {
@@ -27,7 +33,7 @@ class App extends React.Component {
       <React.Fragment>
         <Header />
         <div className="d-flex flex-column align-items-center">
-          <Profile />
+          <Profile handleUpdate={this.handleUpdate} />
           <Professions
             Professions={this.state.Professions}
             addComponent={this.addComponent}
@@ -44,6 +50,11 @@ class App extends React.Component {
             deleteComponent={this.deleteComponent}
           />
           <ContactInfo />
+          <button
+            className="btn btn-primary my-2"
+            onClick={() => console.log(this.state)}>
+            Submit
+          </button>
         </div>
       </React.Fragment>
     );
@@ -66,6 +77,10 @@ class App extends React.Component {
   deleteComponent = (type, ID) => {
     const components = this.state[type].filter((c) => c.id !== ID);
     this.setState({ [type]: components });
+  };
+
+  handleUpdate = (type, state) => {
+    this.setState({ [type]: state });
   };
 }
 
