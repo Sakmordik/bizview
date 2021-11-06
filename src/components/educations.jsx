@@ -6,7 +6,7 @@ class Educations extends Component {
     const { Educations, addComponent, deleteComponent } = this.props;
     return (
       <div className="container m-4 border rounded d-grid ">
-        <h2 className="title text-center my-2">Education</h2>
+        <h2 className="title text-center my-3">Education</h2>
         {Educations.map((education) => (
           <Education
             key={education.id}

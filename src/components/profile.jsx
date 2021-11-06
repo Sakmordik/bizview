@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import $ from "jquery";
 
 class Profile extends Component {
-  state = {
-    firstName: "",
-    lastName: "",
+  inputs = {
+    fullName: "",
     description: "",
     gender: "",
   };
@@ -14,16 +14,28 @@ class Profile extends Component {
         <h2 className="title text-center my-3">Profile</h2>
         <div className="row">
           <div className="col">
-            <div className="form-floating" >
-              <input type="text" className="form-control" style={{height:"0px"}}/>
-            </div>
+            <input
+              id="fullNameInput"
+              type="text"
+              className="form-control"
+              // style={{ height: "40px" }}
+              placeholder="Full Name"
+              onChange={(e) => {
+                $("#" + e.target.id).removeClass("is-invalid");
+                this.inputs.fullName = e.target.value;
+                this.props.handleUpdate("Profile", this.inputs);
+              }}
+            />
+            <label htmlFor="fullNameInput" className="invalid-feedback">
+              Please provide a full name.
+            </label>
           </div>
-          <div className="col-auto">
+          <div className="col-3">
             <div className="input-group">
               <span className="input-group-text">Gender:</span>
               <select
-                className="border rounded"
-                id="inputGroupSelect01"
+                className="rounded form-select"
+                id="genderSelect"
                 style={{
                   width: "10%",
                   maxWidth: "230px",
@@ -31,14 +43,20 @@ class Profile extends Component {
                   textAlign: "center",
                 }}
                 onChange={(e) => {
-                  this.setState({ gender: e.target.value });
-                  this.updateParentState();
+                  $("#" + e.target.id).removeClass("is-invalid");
+                  this.inputs.gender = e.target.value;
+                  this.props.handleUpdate("Profile", this.inputs);
                 }}>
-                <option defaultValue>Choose...</option>
+                <option selected disabled value="">
+                  Choose...
+                </option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
+              <label htmlFor="genderSelect" className="invalid-feedback">
+                Please select a gender!
+              </label>
             </div>
           </div>
         </div>
@@ -107,30 +125,53 @@ class Profile extends Component {
   <input type="text" className="form-control" placeholder="Phone Number"/>
   <input type="text" className="form-control" placeholder="Email" />
 </div> */}
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="5"
-          className="form-control my-3"
-          placeholder="Description (100 words)"
-          onChange={(e) => {
-            this.setState({ description: e.target.value });
-            this.updateParentState();
-          }}></textarea>
+        <div className="position-relative mt-3 mb-4">
+          <textarea
+            name=""
+            id="descriptionTextArea"
+            cols="30"
+            rows="5"
+            className="form-control mt-3"
+            placeholder="Description (100 words)"
+            onChange={(e) => {
+              $("#" + e.target.id).removeClass("is-invalid");
+              this.inputs.description = e.target.value;
+              this.props.handleUpdate("Profile", this.inputs);
+              this.setWordCount(e.target.value);
+            }}></textarea>
+          <div className="invalid-feedback">Please give a description!</div>
+          <label
+            id="wordCountLabel"
+            htmlFor="descriptionTextArea"
+            className="position-absolute end-0 text-secondary">
+            0 words
+          </label>
+        </div>
         {/* <span className="input-group-text">@</span>
   <input type="text" className="form-control" placeholder="Domain" aria-label="Server"/> */}
-        <button
+        {/* <button
           className="btn btn-primary mb-2"
           onClick={() => console.log(this.state)}>
           Test
-        </button>
+        </button> */}
       </div>
     );
   }
 
-  updateParentState = () => {
-    this.props.handleUpdate("Profile", this.state);
+  updateParentState = (state) => {
+    this.props.handleUpdate("Profile", state);
+  };
+
+  setWordCount = (text) => {
+    text = text.split(" ");
+    var wordCount = 0;
+    for (var i = 0; i < text.length; i++) {
+      if (text[i] !== "") {
+        wordCount++;
+      }
+    }
+
+    $("#wordCountLabel").text(String(wordCount) + " words");
   };
 }
 
